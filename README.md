@@ -49,7 +49,8 @@ public HelloData requestBodyJsonV3(@RequestBody HelloData data) {
 
 그렇다면 @RequestBody String, @RequestBody Entity등을 유연하게 Argument로 받을 수 있는걸까?<br> handlerAdapter안에 **HTTP 메시지 컨버터**를 사용하기 때문이다.
 
-![image-20220328202239658](image-20220328202239658.png)
+<img width="540" alt="image-20220328202239658" src="https://user-images.githubusercontent.com/58017318/160865462-ae801ea0-b16d-4964-a8e7-32568c3644c2.png">
+
 
 
 
