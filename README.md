@@ -77,7 +77,7 @@ public void requestBodyJsonV2(@RequestBody String messageBody) throws IOExceptio
 
 
 
-![image-20220328203728863](image-20220328203728863.png)
+<img width="1162" alt="image-20220328203728863" src="https://user-images.githubusercontent.com/58017318/160865885-0ad852a1-cfe0-43f3-a006-a67fc0ece599.png">
 
 1. DispatcherServlet은 조건에 맞는 handler를 찾아 반환한 후 handlerAdapter를 찾는다.
 
@@ -124,7 +124,7 @@ public void requestBodyJsonV2(@RequestBody String messageBody) throws IOExceptio
 
    
 
-   ![image-20220328211049852](image-20220328211049852.png)
+<img width="438" alt="image-20220328211049852" src="https://user-images.githubusercontent.com/58017318/160865899-1a3054cc-e9da-4e89-bf9e-fbd2b4eeda04.png">
 
    
 
@@ -205,11 +205,11 @@ select ~~
 
 JsonPathArgumentResolver
 
-![image-20220327122652045](image-20220327122652045.png)
+<img width="1702" alt="image-20220327122652045" src="https://user-images.githubusercontent.com/58017318/160865861-c3746d6a-10f6-4099-a618-807f5152950f.png">
 
 
 
-![image-20220329205412451](image-20220329205412451.png)
+<img width="1728" alt="image-20220329205412451" src="https://user-images.githubusercontent.com/58017318/160865910-1c7f3120-73b3-4bdc-bd01-e45656c5e9ce.png">
 
 
 
@@ -259,5 +259,5 @@ void hello(@RequetsBody HelloData data) {}
 
 클래스(HelloData)타입이니까 **MappingJackson2HttpMessageConverter**을 선택하겠지만, 미디어타입이 text/html로 요청하여 받아들일 수 없기에 이는 415 error가 발생한다
 
-![image-20220327111543413](image-20220327111543413.png)
+<img width="1543" alt="image-20220327111543413" src="https://user-images.githubusercontent.com/58017318/160865839-ffb8a74c-e4cc-4865-8749-bdee7e18e982.png">
 
