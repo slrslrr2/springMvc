@@ -64,8 +64,8 @@ public Hello test(@RequestBody Hello hello){
 
 
 
-처음 궁금했던 내용이 DispatcherServlet은 클라이언트 요청이 들어오면 HandlerMapping, HandlerAdapter <br>for문을 돌려서 알맞은 adaptor와 mapping을 사용하는데 <br>그렇다면 handler와 mapping의 데이터들을 언제 셋팅해주는지가 궁금![image-20220411205927236](image-20220411205927236.png)
-
+처음 궁금했던 내용이 DispatcherServlet은 클라이언트 요청이 들어오면 HandlerMapping, HandlerAdapter <br>for문을 돌려서 알맞은 adaptor와 mapping을 사용하는데 <br>그렇다면 handler와 mapping의 데이터들을 언제 셋팅해주는지가 궁금
+<img width="711" alt="image-20220411205927236" src="https://user-images.githubusercontent.com/58017318/162986284-4f916255-2b6d-4eda-93b2-f8c2691c1fd1.png">
 
 
 ## 0. Tomcat이 처음 작동 시 
@@ -183,7 +183,8 @@ DispatcherServlet은 생성하고 초기화작업을 매번 하면 많은 작업
 
 ​	==> **싱글톤**으로 활용
 
-![image-20220410202915181](image-20220410202915181.png)
+<img width="442" alt="image-20220410202915181" src="https://user-images.githubusercontent.com/58017318/162986428-f654bdbf-4a7c-4881-a853-45cddfa6271c.png">
+
 
 > https://victorydntmd.tistory.com/154
 
@@ -231,7 +232,7 @@ protected void initStrategies(ApplicationContext context) {
       }
     ```
 
-    - ![image-20220410210929530](image-20220410210929530.png)
+      - <img width="831" alt="image-20220410210929530" src="https://user-images.githubusercontent.com/58017318/162986832-d2642cc7-bb84-477d-9d33-f50b6f58ff9c.png">
     - 구현체
       - **BeanNameUrlHandlerMapping**
       - BeanNameUrlHandlerMapping
@@ -239,7 +240,7 @@ protected void initStrategies(ApplicationContext context) {
 - 나. initHandlerAdapters(context);
 
   - 각각의 핸들러를 처리할 수 있는 interface
-  - ![image-20220410211109824](image-20220410211109824.png)
+  - <img width="925" alt="image-20220410211109824" src="https://user-images.githubusercontent.com/58017318/162986964-5888da1a-be1a-418b-9a36-fa29cc14095d.png">
     - 구현체
       - **RequestMappingHandlerAdapter**
       - SimpleControllerHandlerAdapter 등등
@@ -247,7 +248,8 @@ protected void initStrategies(ApplicationContext context) {
 - 다. initViewResolvers(context);
 
   - ViewName에 해당하는 뷰를 찾아내는 interface
-  - ![image-20220410211231078](image-20220410211231078.png)
+  - <img width="920" alt="image-20220410211231078" src="https://user-images.githubusercontent.com/58017318/162987151-e8eb273d-4c66-42b1-8385-26ebbcb455bf.png">
+
 
 > 자세한 내용은 https://ncucu.me/10 참조
 
@@ -257,13 +259,14 @@ protected void initStrategies(ApplicationContext context) {
 
 ## 2. Servlet에서 doDispatch() 함수를 통해 원하는<br> Url의 Controller를 찾아간다.
 
-여기서부터는 Client의 요청이 들어올 때마다 실행되는 흐름이겠죠?![image-20220411205927236](image-20220411205927236.png)
+여기서부터는 Client의 요청이 들어올 때마다 실행되는 흐름이겠죠?
+<img width="711" alt="image-20220411205927236" src="https://user-images.githubusercontent.com/58017318/162986539-891067f2-4383-4195-9be5-8402268bff5f.png">
 
 
 
 저번시간에 헷갈렸던 ArguementResolver와 MessageConverter의 내용이나옵니다.<br>큰 흐름을 말씀드리면 hadler를 실행한 후 ArgumentResolver를 통해 MessageConverter를 실행하여 <br>해당 Controller의 Argument를 변환하여 반환해줍니다.
 
-![image-20220328203728863](image-20220328203728863.png)
+<img width="1162" alt="image-20220328203728863" src="https://user-images.githubusercontent.com/58017318/162986695-fd667d5d-9342-4955-a040-4270f658dc62.png">
 
 
 
@@ -285,10 +288,11 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
   - handler: **RequestMappingHandlerMapping**를 통해 handler를 찾는다
 
-    - **DispatcherServlet - doDispatch**![image-20220403162300277](image-20220403162300277.png)
+    - **DispatcherServlet - doDispatch**
+    - <img width="967" alt="image-20220403162300277" src="https://user-images.githubusercontent.com/58017318/162987341-5be46663-def6-4f0a-b9ef-6d02fdb30ed4.png">
   - Adapter: **RequestMappingHandlerAdapter**
 
-    - ![image-20220403165701497](image-20220403165701497.png)
+    - <img width="1071" alt="image-20220403165701497" src="https://user-images.githubusercontent.com/58017318/162987455-e8057656-967c-467d-9523-266d3ad8e641.png">
 
 
 
@@ -309,7 +313,7 @@ mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 >
 >   - **변화하지 않는 interface에 의존**하고있다.
 >
-> ![image-20220328211049852](image-20220328211049852.png)
+> <img width="438" alt="image-20220328211049852" src="https://user-images.githubusercontent.com/58017318/162987558-cada7051-765f-4040-9c2b-4eea1c41793a.png">
 >
 >  @RequestMapping의 경우 HandlerAdaper를 상속받은 **RequestMappingHandlerAdaper**를 사용한다.
 >
@@ -410,7 +414,7 @@ resolver Interface: **HandlerMethodArgumentResolver**
 
 - @RequestBody Hello
 
-- ![image-20220411185656927](image-20220411185656927.png)
+- <img width="712" alt="image-20220411185656927" src="https://user-images.githubusercontent.com/58017318/162987750-fb62f719-eff5-490d-8338-831063eaf23b.png">
 
   
 
@@ -446,7 +450,7 @@ protected Object[] getMethodArgumentValues( ... 생략 ...) throws Exception {
      }
      ```
 
-     - ![image-20220410234646866](image-20220410234646866.png)
+     - <img width="710" alt="image-20220410234646866" src="https://user-images.githubusercontent.com/58017318/162987866-83c87366-8328-43cb-81a8-bfcf4e72258b.png">
 
 
 
@@ -539,7 +543,7 @@ public interface HttpMessageConverter<T> {
 
 소스에 들어가보자면
 
-<img src="image-20220412201725757.png" alt="image-20220412201725757" style="zoom:50%;" />
+<img width="684" alt="image-20220412201725757" src="https://user-images.githubusercontent.com/58017318/162987984-eb644d6c-373a-47e7-8b32-2942305fd2b2.png">
 
 AbstractMessageConverterMethodArgumentResolver 는 RequestResponseBodyMethodProcessor를 상속해주고<br>HandlerMethodArgumentResolver를 상속받았다.<br>즉, ArgumentResolver안에서 MessageConvertor를 선택하고
 
