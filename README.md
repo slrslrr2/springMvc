@@ -5,9 +5,9 @@ ArgumentResolver, MessageConverter의 동작 흐름
 ```java
 첫번째 Tomcat 작동 시 
     - RequestMappingHandlerAdapter을 생성
-           - messageConverters
-           - argumentResolvers
-           - returnValueHandlers들을 셋팅한 뒤, 스프링 컨테이너에 등록
+      - messageConverters
+      - argumentResolvers
+      - returnValueHandlers들을 셋팅한 뒤, 스프링 컨테이너에 등록
     - RequestMappingHandlerMapping 생성 및 스프링 컨테이너에 등록
 
 두번째 Client의 첫 요청 시 DispatcherServlet객체를 생성한 후 요청을 처리한다.
@@ -31,15 +31,16 @@ ArgumentResolver [RequestResponseBodyMethodProcessor]
 
  3. ArgumentResolver안의 readWithMessageConverters메소드에서
       for문을 돌려 알맞은 MessageConvertor를 확인하고
-                 ㄴ MessageConvertor안의
-				1. canRead 메소드로 MessageConvertor로 @RequestBody를 읽을 수 있는지 확인
-				2. read 함수를 통해 Controller에서 원하는 객체 반환
+          ㄴ MessageConvertor안의
+		1. canRead 메소드로 MessageConvertor로 @RequestBody를 읽을 수 있는지 확인
+		2. read 함수를 통해 Controller에서 원하는 객체 반환
 
 다섯번째, Controller에 해당 Arguement 리턴 해준다
 ```
 
 
 -------
+<br>
 요청 조건
 
 > @RequestMapping을 통해 요청
@@ -62,6 +63,8 @@ public Hello test(@RequestBody Hello hello){
 
 -----------
 
+
+<br>
 
 
 처음 궁금했던 내용이 DispatcherServlet은 클라이언트 요청이 들어오면 HandlerMapping, HandlerAdapter <br>for문을 돌려서 알맞은 adaptor와 mapping을 사용하는데 <br>그렇다면 handler와 mapping의 데이터들을 언제 셋팅해주는지가 궁금
@@ -176,6 +179,8 @@ public RequestMappingHandlerMapping requestMappingHandlerMapping( ... 생략 ...
 -----
 
 
+<br>
+
 
 ## 1. Client의 첫 요청 시 DispatcherServlet객체를 생성한 후 요청을 처리한다.
 
@@ -256,6 +261,9 @@ protected void initStrategies(ApplicationContext context) {
 
 
 ------
+
+
+<br>
 
 ## 2. Servlet에서 doDispatch() 함수를 통해 원하는<br> Url의 Controller를 찾아간다.
 
@@ -476,6 +484,9 @@ protected Object[] getMethodArgumentValues( ... 생략 ...) throws Exception {
     ```
 
 -----
+
+<br>
+<br>
 
 ## 3. ArgumentResolver.resolveArgument를 실행시켜 Object 구하기
 
