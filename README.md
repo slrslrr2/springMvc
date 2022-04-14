@@ -1,6 +1,6 @@
-ArgumentResolver, MessageConverter의 동작 흐름
+### ArgumentResolver, MessageConverter의 동작 흐름
 
-##### 큰 흐름
+#### Tomcat시작부터 -> DispatcherServlet -> ArgumentResolver -> MessageConvertor 큰 흐름입니다.
 
 ```java
 첫번째 Tomcat 작동 시 
@@ -41,7 +41,8 @@ ArgumentResolver [RequestResponseBodyMethodProcessor]
 
 -------
 <br>
-요청 조건
+
+#### 아래 설명할 전제조건
 
 > @RequestMapping을 통해 요청
 >
@@ -70,6 +71,8 @@ public Hello test(@RequestBody Hello hello){
 처음 궁금했던 내용이 DispatcherServlet은 클라이언트 요청이 들어오면 HandlerMapping, HandlerAdapter <br>for문을 돌려서 알맞은 adaptor와 mapping을 사용하는데 <br>그렇다면 handler와 mapping의 데이터들을 언제 셋팅해주는지가 궁금
 <img width="711" alt="image-20220411205927236" src="https://user-images.githubusercontent.com/58017318/162986284-4f916255-2b6d-4eda-93b2-f8c2691c1fd1.png">
 
+
+<br><br><br>
 
 ## 0. Tomcat이 처음 작동 시 
 
@@ -164,6 +167,7 @@ public RequestMappingHandlerAdapter requestMappingHandlerAdapter( ...생략 ... 
 
 - HandlerMethodReturnValueHandler
 
+<br>
 
 
 ### 나. RequestMappingHandlerMapping을 생성하여 스프링빈에 등록한다.
@@ -581,4 +585,9 @@ return body;
 ```
 
 -------
+
+참고자료 : 
+- http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html#id2
+- https://victorydntmd.tistory.com/154
+
 
